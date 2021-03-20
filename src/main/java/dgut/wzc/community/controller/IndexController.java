@@ -25,7 +25,10 @@ public class IndexController {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("token")) {
                 String token = cookie.getValue();
-                User user = userMapper.findByToken(token);
+                User user = userMapper.findByToken(token);//去数据库寻找该token值的用户信息
+
+                //若找到了这个用户信息
+                //写进session，让页面去展示
                 if (user != null) {
                     request.getSession().setAttribute("user", user);
                 }
